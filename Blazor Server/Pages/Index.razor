@@ -3,7 +3,7 @@
 @using Syncfusion.Blazor.DocumentEditor
 @using System.IO
 @using System.Net
-@using Newtonsoft.Json
+@using System.Text.Json
 @using Syncfusion.DocIORenderer 
 
 <button @onclick="ExportAsPdf">Export as Pdf</button>
@@ -19,6 +19,7 @@
 
     protected override void OnInitialized()
     {
+         
         string fileUrl = "https://www.syncfusion.com/downloads/support/directtrac/general/doc/Getting_Started1018066633.docx";
         WebClient webClient = new WebClient();
         byte[] byteArray = webClient.DownloadData(fileUrl);
@@ -29,7 +30,7 @@
         stream.Dispose();
         //To observe the memory go down, null out the reference of stream variable.
         stream = null;
-        sfdtString = JsonConvert.SerializeObject(document);
+        sfdtString = JsonSerializer.Serialize(document);
         document.Dispose();
         //To observe the memory go down, null out the reference of document variable.
         document = null;
