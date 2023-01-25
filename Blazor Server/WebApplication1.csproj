@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Blazor.WordProcessor" Version="19.4.0.48" />
-    <PackageReference Include="Syncfusion.DocIORenderer.Net.Core" Version="19.4.0.50" />
+    <PackageReference Include="Syncfusion.Blazor.WordProcessor" Version="*" />
+    <PackageReference Include="Syncfusion.DocIORenderer.Net.Core" Version="*" />
   </ItemGroup>
 
   <ItemGroup>

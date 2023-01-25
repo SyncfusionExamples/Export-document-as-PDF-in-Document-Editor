@@ -3,11 +3,11 @@
 @using Syncfusion.Blazor.DocumentEditor
 @using System.IO
 @using System.Net
-@using Newtonsoft.Json
+
 @using Syncfusion.DocIORenderer 
 
 <button @onclick="ExportAsPdf">Export as Pdf</button>
-<SfDocumentEditorContainer @ref="container" EnableToolbar=true Height="590px">
+<SfDocumentEditorContainer @ref="container" EnableToolbar=true EnableSpellCheck="true" ServiceUrl="http://localhost:62870/api/documenteditor/" Height="590px">
     <DocumentEditorContainerEvents Created="OnLoad"></DocumentEditorContainerEvents>
 </SfDocumentEditorContainer>
 
@@ -19,6 +19,7 @@
 
     protected override void OnInitialized()
     {
+         
         string fileUrl = "https://www.syncfusion.com/downloads/support/directtrac/general/doc/Getting_Started1018066633.docx";
         WebClient webClient = new WebClient();
         byte[] byteArray = webClient.DownloadData(fileUrl);
@@ -36,6 +37,11 @@
     }
     public void OnLoad(object args)
     {
+        var spellcheck = container.DocumentEditor.SpellChecker;  
+// Document Editor provides multi-language spell check support. You can add as many languages (dictionaries) in the server-side and to use that language for spell checking in Document Editor, it must be matched with languageID you pass in the Document Editor.   
+        spellcheck.SetLanguageIDAsync(1033);  
+        spellcheck.SetRemoveUnderlineAsync(false);  
+        spellcheck.SetAllowSpellCheckAndSuggestionAsync(true); 
         SfDocumentEditor editor = container.DocumentEditor;
         editor.OpenAsync(sfdtString);
         //To observe the memory go down, null out the reference of sfdtString variable.
