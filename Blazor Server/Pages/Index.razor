@@ -3,11 +3,11 @@
 @using Syncfusion.Blazor.DocumentEditor
 @using System.IO
 @using System.Net
-
+@using System.Text.Json
 @using Syncfusion.DocIORenderer 
 
 <button @onclick="ExportAsPdf">Export as Pdf</button>
-<SfDocumentEditorContainer @ref="container" EnableToolbar=true EnableSpellCheck="true" ServiceUrl="http://localhost:62870/api/documenteditor/" Height="590px">
+<SfDocumentEditorContainer @ref="container" EnableToolbar=true Height="590px">
     <DocumentEditorContainerEvents Created="OnLoad"></DocumentEditorContainerEvents>
 </SfDocumentEditorContainer>
 
@@ -30,18 +30,13 @@
         stream.Dispose();
         //To observe the memory go down, null out the reference of stream variable.
         stream = null;
-        sfdtString = JsonConvert.SerializeObject(document);
+        sfdtString = JsonSerializer.Serialize(document);
         document.Dispose();
         //To observe the memory go down, null out the reference of document variable.
         document = null;
     }
     public void OnLoad(object args)
     {
-        var spellcheck = container.DocumentEditor.SpellChecker;  
-// Document Editor provides multi-language spell check support. You can add as many languages (dictionaries) in the server-side and to use that language for spell checking in Document Editor, it must be matched with languageID you pass in the Document Editor.   
-        spellcheck.SetLanguageIDAsync(1033);  
-        spellcheck.SetRemoveUnderlineAsync(false);  
-        spellcheck.SetAllowSpellCheckAndSuggestionAsync(true); 
         SfDocumentEditor editor = container.DocumentEditor;
         editor.OpenAsync(sfdtString);
         //To observe the memory go down, null out the reference of sfdtString variable.
