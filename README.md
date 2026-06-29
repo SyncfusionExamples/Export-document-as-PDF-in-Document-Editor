@@ -1,6 +1,6 @@
-# Export Document as PDF in Document Editor 
+# Export Document as PDF in DOCX Editor
 
-  This repository provides a working example that demonstrates how to export documents as PDF using the Syncfusion® Document Editor (a.k.a. Word Processor) component. It walks through the process of converting Word documents edited in the browser into downloadable PDF files, enabling seamless export and sharing capabilities within modern web applications. 
+  This repository provides a working example that demonstrates how to export documents as PDF using the Syncfusion® [DOCX Editor](https://www.syncfusion.com/docx-editor-sdk/react-docx-editor?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples). It walks through the process of converting Word documents edited in the browser into downloadable PDF files, enabling seamless export and sharing capabilities within modern web applications. 
 
 # Features 
 
